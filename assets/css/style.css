@@ -936,7 +936,7 @@ hr{
    
     body{
         width: 204em;
-        overflow-x: scroll;
+        overflow-x: hidden;
     }
     .header-container{
         background-size: 204em 100em; width: 204em; height: 100em;
@@ -1292,7 +1292,7 @@ hr{
 @media(max-width:420px){
 body{
     width: 397vw;
-    overflow-x: scroll;
+    overflow-x: hidden;
 }
 .header-container{
     width: 102em; height: 60em; background-size: 396vw 108vh;
@@ -1348,8 +1348,7 @@ body{
     border-bottom: 2px solid white;
 }
 .TopContactNo{
-    width: 49vw;
-    left: 68rem;
+    width: 49vw; left: 68rem; bottom: 52em;
 }
 .call{
     font-size: 22px;
@@ -1727,7 +1726,7 @@ a{
 /*<==================== MEDIA QUERY FOR PHONES OF WIDTH 375PX OR LESS ================>*/
 @media (max-width: 375px){
  body{
-     overflow-x: scroll;
+     overflow-x: hidden;
  }   
 .header-container{
     height: 58em; background-size: 396vw 58em;
@@ -1760,7 +1759,7 @@ hr{
     font-size: 5.5em;
 }
 .tours{
-    top: -3.1em; font-size: 5.5em;
+    top: -2.8em; font-size: 5.5em;
 }
 .realtors{
     top: -3.7em; font-size: 5.5em;
