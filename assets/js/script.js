@@ -1,164 +1,169 @@
-$(document).ready(function() {
-    var divWidth = $("#telno").width();
-      
-    $("#telno").mouseenter(function(){
-        $(this).animate({
-            width: "12vw"
-        });
-    }).mouseleave(function(){
-        $(this).animate({
-            width: "2vw"
-        });
-    });
-    $('#nameerror').hide();   
-    $('#emailerror').hide();
-    $('#phoneerror').hide();
-    $('#messageerror').hide();
+$(document).ready(function () {
+    $("#ship-data").hide()
+    $("#capsule-data").hide()
+    $("#rocket-data").hide()
 
-
-    // <=========== NAME VALIDATION ON KEYUP EVENT ==============>
-        $('#fullname').keyup(function () {
-        let usernameError = true;
-        let usernameValue = $('#fullname').val();
-        if (usernameValue.length < 2 || usernameValue.length > 15) {
-        $('#nameerror').show(250);
-        $('#nameerror').html
-  ("**User name is not valid :(");
-            usernameError = false;
-        }
-        else {
-            $('#nameerror').hide(250);
-            usernameError=true;
-        }
-        return usernameError;
-    });
-    // <=========== EMAIL VALIDATION ON KEYUP EVENT ==============>
-    $('#email').keyup(function () {
-        let useremailerror = true;
-        let useremailValue = $('#email').val();
-        if (!(/\S+@\S+\.\S+/).test(useremailValue)){
-        $('#emailerror').show(250);
-        $('#emailerror').html
-  ("**Email is not valid :(");
-            useremailerror = false;
-        }
-        else {
-            $('#emailerror').hide(250);
-            useremailError=true;
-        }
-        return useremailError;
-    });
-     // <=========== PHONE VALIDATION ON KEYUP EVENT ==============>
-     $('#phone').keyup(function () {
-        let userphoneError = true;
-        let userphoneValue = $('#phone').val();
-        if (userphoneValue.length != 10 || userphoneValue == isNaN){
-        $('#phoneerror').show(250);
-        $('#phoneerror').html
-  ("**Phone number is not valid  :(");
-            userphoneerror = false;
-        }
-        else {
-            $('#phoneerror').hide(250);
-            userphoneError=true;
-        }
-        return userphoneError;
-    });
-     // <=========== MESSAGE VALIDATION ON KEYUP EVENT ==============>
-     $('#message').keyup(function () {
-        let usermessageError = true;
-        let usermessageValue = $('#message').val();
-        if (usermessageValue.length < 16 || usermessageValue == ""){
-        $('#messageerror').show(250);
-        $('#messageerror').html
-  ("**Message should be at least of 16 charactors :)");
-            usermessageError = false;
-        }
-        else {
-            $('#messageerror').hide(250);
-            usermessageError=true;
-        }
-        return usermessageError;
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $(this).toggleClass('active');
     });
 
-
-    // <=========== COMPLETE VALIDATION ON SUBMIT EVENT ==============>
-      $('#myForm').submit(function () {
-        let Error = true;
-        let usernameValue = $('#fullname').val();
-        let useremailValue = $('#email').val();
-        let userphoneValue = $('#phone').val();
-        let usermessageValue = $('#message').val();
-        if (usernameValue == "" || usernameValue.length < 2 || usernameValue.length > 15) {
-            $('#nameerror').show(250);
-            Error = false;
-        } 
-        else if(useremailValue=="" || !(/\S+@\S+\.\S+/).test(useremailValue)){
-            $('#emailerror').show(250);
-            Error = false;
-        }
-        else if(userphoneValue == ""){
-            $('#phoneerror').show(250);
-            Error = false;
-        }
-        else if(usermessageValue == ""){
-            $('#messageerror').show(250);
-            Error = false;
-        }
-        else {
-            $('#nameerror').hide(250);
-            $('#emailerror').hide(250);
-            $('#phoneerror').hide(250);
-            $('#messageerror').hide(250);
-            Error=true;
-        }
-        return Error;
-    });
-
-
-    // <============= TOGGLE BUTTON FOR NAVBAR ======================>
-
+    $("#ships").click(function(){
+        $("#ship-data").show()
+        $("#capsule-data").hide()
+        $("#capsule-details").hide();
+        $("#rocket-data").hide()
+        $("#rocket-details").hide();
+    })
+    $("#capsules").click(function(){
+        $("#ship-data").hide()
+        $("#capsule-data").show()
+        $("#ship-details").hide();
+        $("#rocket-data").hide()
+        $("#rocket-details").hide();
+    })
+    $("#rockets").click(function(){
+        $("#ship-data").hide()
+        $("#capsule-data").hide()
+        $("#capsule-details").hide();
+        $("#rocket-data").show();
+        $("#ship-details").hide();
+    })
 });
-$(document).ready(function(){
-    $("#toggle-btn").click(function () {
-        $("#list-div").toggle(280);
-        $('#toggle-btn').toggleClass("btn-checked");
-        $('#menu-icon').toggleClass("menu-icon-clicked");
-    });
-    var MAX_WIDTH = 767, $window = $(window), toggleEnabled = true;
 
-$window.on('resize', function() {
-    if ($window.width() > MAX_WIDTH) {
-        $("#toggle-btn").hide();
-        $("#list-div").show(2);
-    } else {
-        
-        $("#toggle-btn").show(2);
-     
-        $('#list-div').hide();
+$(document).ready(function () {
+    $.ajax({
+       url: "https://api.spacexdata.com/v3/ships/?limit=5&offset=0",
+       type: "get",
+       success: function (response) {
+           console.log("All Responce for ships", response);
+           let str = "";
+           response.map(item => {
+               str += `<div class="card col-sm-2">
+                      <img class = "spaceX" src = "https://www.spacex.com/static/images/share.jpg">
+                      <h3>${item.ship_name}</h3>
+                      Home Port :- <span>${item.home_port}</span><br>
+                      <button id="ship_details_${item.ship_id}" data-id="${item.ship_id}">Details</button>
+                     </div>`;
+           });
+            $("#ship-data").html(str);
+           }
+   });
+   $(document).on("click", "button[id^=ship_details_]", function () {
+    let id = $(this).attr("data-id");
+    $.ajax({
+        url: "https://api.spacexdata.com/v3/ships/" + id,
+       type: "get",
+       success: function (response) {
 
-        toggleEnabled = true;
-    }
-    if($window.width()<MAX_WIDTH){
-        $("#toggle-btn").click(function () {
-            
-        });
-    }
-   
+           console.log("Particular Responce for ships", response);
+
+           $(".title").text(response.ship_name)
+        if(statuscode=403 && id=="AMERICANCHAMPION"){
+            $(".detail-img").attr("src", "https://pbs.twimg.com/media/E82gVF9WEAEuU97?format=jpg&name=large");
+           }
+        else if(statuscode=403 && id=="AMERICANISLANDER"){
+            $(".detail-img").attr("src", "https://spacexfleet.com/wp-content/uploads/2020/06/OCISLY-DM-2-closeup-scaled.jpg");
+        }
+        else if(statuscode=403 && id == "AMERICANSPIRIT"){
+            $(".detail-img").attr("src", "https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/go-searcher-1588971225.jpg?crop=1.00xw:0.848xh;0,0&resize=900:*");
+        }
+        else if(statuscode=403 && id == "ASOG"){
+            $(".detail-img").attr("src", "https://icdn.digitaltrends.com/image/digitaltrends/spacex-mr-steven.jpg");
+        }
+        else if(statuscode=403 && id == "BETTYRGAMBARELLA"){
+            $(".detail-img").attr("src", "https://spaceflightnow.com/wp-content/uploads/2021/07/asog1.jpg");
+        }
+        else{
+           $(".detail-img").attr("src", response.image);
+        }
+           $(".url").attr("href",response.url);
+           $(".type").text(response.ship_type);
+           $(".roles").text(response.roles[0]);
+           $("#ship-details").show();
+       }
+   })
+})
 });
-$window.trigger('resize');
-// $('#btn2').click(function(){
-// console.log('btn clicked')
 
+$(document).ready(function () {
+    $.ajax({
+       url: "https://api.spacexdata.com/v3/capsules/?limit=5&offset=5",
+       type: "get",
+       success: function (response) {
+           console.log("All Responces for capsule", response);
+           let str = "";
+           response.map(item => {
+               str += `<div class="card col-sm-2">
+                      <img class = "spaceX" src = "https://www.spacex.com/static/images/share.jpg">
+                      <h3>${item.capsule_serial}</h3>
+                     <p>${item.status}</p>
+                     <p>${item.details}</p>
+                      <button id="capsules_details_${item.capsule_serial}" data-id="${item.capsule_serial}">Details</button>
+                     </div>`;
+           });
+            $("#capsule-data").html(str);
+           }
+   });
+   $(document).on("click", "button[id^=capsules_details_]", function () {
+    let id = $(this).attr("data-id");
+    $.ajax({
+        url: "https://api.spacexdata.com/v3/capsules/" + id,
+       type: "get",
+       success: function (response) {
 
-// $.ajax({
-//   type: "GET",
-//   url: "https://jsonplaceholder.typicode.com/todos",
-//   cache: false,
-//   success: function(data){
-//       console.log(data)
-  
-//   }
-// });
-// });
+           console.log("Particular Responce for capsule", response);
+
+           $(".title").text(response.capsule_serial)
+           $(".original_launch").text(response.original_launch);
+           $(".original_launch_unix").text(response.original_launch_unix);
+           $(".status").text(response.status);
+           $("#capsule-details").show();
+       }
+   })
+})
+});
+
+$(document).ready(function () {
+    $.ajax({
+       url: "https://api.spacexdata.com/v3/rockets/?limit=5&offset=0",
+       type: "get",
+       success: function (response) {
+           console.log("All Responces for rockets", response);
+           let str = "";
+           response.map(item => {
+               str += `<div class="card col-sm-2">
+                      <img class = "spaceX" src = "https://www.spacex.com/static/images/share.jpg">
+                      <h3>${item.rocket_name}</h3>
+                      Type :-<span>${item.rocket_type}</span><br>
+                     Active :- <span>${item.active}</span><br>
+                      <button id="rocket_details_${item.rocket_id}" data-id="${item.rocket_id}">Details</button>
+                     </div>`;
+           });
+            $("#rocket-data").html(str);
+           }
+   });
+   $(document).on("click", "button[id^=rocket_details_]", function () {
+    let id = $(this).attr("data-id");
+    $.ajax({
+        url: "https://api.spacexdata.com/v3/rockets/" + id,
+       type: "get",
+       success: function (response) {
+
+           console.log("Particular Responce for rockets", response);
+
+           $(".title").text(response.rocket_name)
+           if(statuscode=403 && id == "falcon1"){
+            $(".detail-img").attr("src", "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg");
+           }
+           else {
+           $(".detail-img").attr("src", response.flickr_images[0]);
+           }
+           $(".id").text(response.id);
+           $(".cost_per_launch").text(response.cost_per_launch);
+           $(".first_flight").text(response.first_flight);
+           $("#rocket-details").show();
+       }
+   })
+})
 });
