@@ -16,9 +16,12 @@ $window.on('resize', function() {
     if($window.width()<MAX_WIDTH){
         $("#toggle-btn").click(function () {
             $("#list-div").toggle(300);
-           $("#downicon").toggleClass("down-icon")
+           $("#downicon").toggleClass("down-icon");
         });
-        $("#resume-btn").toggleClass("center-block")
+        $("#resume-btn").addClass("center-block");
+    }
+    else{
+      $("#resume-btn").removeClass("center-block");
     }
 });
 $window.trigger('resize');
@@ -26,17 +29,8 @@ $window.trigger('resize');
 $(window).scroll(function() {
     if ($(this).scrollTop() > 520) {
         $('.back-to-top').show(300);
-      $('.back-to-top').fadeIn('slow');
     } else {
         $('.back-to-top').hide();
-      $('.back-to-top').fadeOut('slow');
     }
-  });
-
-  $('.back-to-top').click(function() {
-    $('html, body').animate({
-      scrollTop: 0
-    }, 1500, 'easeInOutExpo');
-    return false;
   });
 });
