@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Coding</title>
+</head>
+<body>
+    <div class="container">
+    <form id="myForm" class="col-md-6">
+        <div class="form-group">
+    <label> Diffrence :- </label>
+    <input type="text" class="form-control" name="number" id="numlen" placeholder="Enter the array">
+    <div class="form-control" id="diff" style="display: none;"></div>
+    <button type="button" id="btn">Diffrence</button>
+    </div>
+
+    <div class="form-group">
+    <label> Char remove :- </label>
+    <input type="text" class="form-control" name="character" id="rmchar" placeholder="Enter the string">
+    <label>  </label>
+    <input type="text" class="form-control" name = "removechar" id="userchar" placeholder="Enter the char to remove"> 
+    <label>  </label>
+    <div class="form-control" id ="res" style="display:none"></div>
+    <button type="button" id="rmcharbtn">RemoveChar</button>
+    </div>
+
+    <div class="form-group">
+        <label> Remove Duplicates :- </label>
+        <input type="text" class="form-control" name="duparr" id="duparr" placeholder="Enter the array"> 
+        <label>  </label>
+        <div class="form-control"  id ="resarr" style="display:none"></div>
+        <button type="button" id="rmdup">Answer</button>
+        </div>
+
+        <div class="form-group">
+            <label> Min and Max :- </label>
+            <input type="text" class="form-control" name="minmaxarr" id="minmaxarr" placeholder="Enter the array"> 
+            <label>  </label>
+            <div class="form-control"  id ="minnum" style="display:none"></div>
+            <div class="form-control"  id ="maxnum" style="display:none"></div>
+            <button type="button" id="minbtn">Min Number</button>
+            <button type="button" id="maxbtn">Max Number</button>
+            </div>
+
+    </form>
+</div>
+      <script>
+            
+      $(document).ready(function(){
+          $("#btn").click(function(e){
+              e.preventDefault()
+              $("#res").hide();
+              $("#diff").empty();
+              var arr = $("#numlen").val();
+              //console.log(Array.isArray(arr));
+              let n= arr.length;
+              
+              for(let i=0;i<n-1;i++){
+                  let i1 = arr[i];
+                  let i2 = arr[i+1];
+                  var diff = i2 - i1;
+                  diff = Math.abs(diff);
+                  $("#diff").show(250);
+                    $("#diff").append(diff);
+           }
+          })
+
+          $("#rmcharbtn").click(function(e){
+              e.preventDefault();
+              $("#res").empty();
+              var arr = $("#rmchar").val();
+              var n = arr.length;
+              let rmchr = $("#userchar").val();
+              for(let i=0;i<n;i++){
+                  if(arr[i] != rmchr){
+                   // console.log(arr[i]);
+                    $("#res").show(250);
+                    $("#res").append(arr[i]);
+                  }
+              }
+              
+          })
+
+          $("#rmdup").click(function(e){
+            e.preventDefault();
+            $("#resarr").empty();
+            let arr = $("#duparr").val();
+            let resarr = [...new Set(arr)];
+            $("#resarr").append(resarr);
+            $("#resarr").show(250);
+
+// console.log(uniqueChars);
+
+          })
+
+        $("#minbtn").click(function(e){
+            e.preventDefault();
+            $("#minnum").empty();
+            $("#minnum").show(250);
+            var arr = $('input[name="minmaxarr[]"]').map(function () {
+            return this.value; }).get();
+            let minnum = arr[0];
+            let n = arr.length;
+            for(let i=1; i<n; i++){
+            if(arr[i] < minnum){
+            minnum = arr[i]; 
+            $("#minnum").append(minnum);  
+        }
+    }  
+        })
+
+        $("#maxbtn").click(function(e){
+            e.preventDefault();
+            $("#maxnum").empty();
+            $("#minnum").hide();
+            $("#maxnum").show(250);
+            let arr = $("#minmaxarr").val();
+            let maxnum = arr[0];
+            let n = arr.length;
+            for(let i=1; i<n; i++){
+            if(arr[i] > maxnum){
+            maxnum = arr[i]; 
+            $("#maxnum").append(maxnum);  
+        }
+    }  
+        })
+      });
+
+      </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- Bootstrap JS CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <title>Portfolio Bootstrap</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <button class="navbar-toggler pull-right" id="toggle-btn" type="button" data-toggle="collapse"
+        data-target="#list-div" aria-controls="list-div" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="glyphicon glyphicon-chevron-down" id="downicon"></span>
+      </button>
+      <ul class="nav navbar-nav navbar-right collapse" id="list-div">
+        <li><a class="pull-right" href="#work">Works</a></li>
+        <li><a class="pull-right" href="#">Blog</a></li>
+        <li><a class="pull-right" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container intro">
+    <div class="row">
+      <div class="col-md-7 top-container">
+        <h1 class="heading">Hi, I am John,Creative Technologist</h1>
+        <p class="intro-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+          consequat duis enim
+          velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        <button id="resume-btn" type="button" class="btn btn-default resbtn">Download Resume</button>
+      </div>
+      <div class="col-md-5">
+        <img src="./assets/img/img1.jpg" alt="" class="image-circle center-block">
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper recent-post">
+    <div class="container">
+      <div class="row">
+        <h4 class="col-md-6 recent">Recent post</h4>
+        <h4 class="col-md-6 text-primary text-right view">View All</h4>
+      </div>
+      <div class="wrapper">
+        <div class="col-md-5 col-xs-12  scratch">
+          <h2>Making a design system from scratch</h2>
+          <span class="date">12 Feb 2020</span>&emsp;&emsp;|&emsp;&emsp;<span>Design, Pattern</span>
+          <p class="scratch-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
+            officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+        <div class="col-md-5 col-xs-12  scratch pull-right">
+          <h2>Making a design system from scratch</h2>
+          <span class="date">12 Feb 2020</span>&emsp;&emsp;|&emsp;&emsp;<span>Design, Pattern</span>
+          <p class="scratch-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
+            officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#" class="back-to-top pull-right" style="display: inline;"><span
+        class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+  </div>
+
+  <div class="wrapper work-division" id="work">
+    <div class="container">
+      <div class="row">
+        <h3 class="col-md-12 feature-heading">Featured works</h3>
+      </div>
+      <div class="row image-content">
+        <div class="col-md-3 col-xs-12">
+          <img src="./assets/img/img2.jpg" alt="" class="img-rounded work-images">
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <h1 class="design-heading">Designing Dashboards</h1>
+          <div class="year-division">
+            <p class="year pull-left">2020</p>&emsp;&emsp;<span class="dashboard ">Dashboard</span>
+          </div>
+          <p class="work-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+            consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+      </div>
+      <hr class="hrline">
+
+      <div class="row image-content">
+        <div class="col-md-3 col-xs-12">
+          <img src="./assets/img/img3.jpg" alt="" class="img-rounded work-images">
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <h1 class="design-heading">Vibrant Portraits of 2020</h1>
+          <div class="year-division">
+            <p class="year pull-left">2018</p>&emsp;&emsp;<span class="dashboard ">Illustration</span>
+          </div>
+          <p class="work-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+            consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+      </div>
+      <hr class="hrline">
+
+      <div class="row image-content">
+        <div class="col-md-3 col-xs-12">
+          <img src="./assets/img/img4.jpg" alt="" class="img-rounded work-images">
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <h1 class="design-heading">36 Days of Malayalam type</h1>
+          <div class="year-division">
+            <p class="year pull-left">2018</p>&emsp;&emsp;<span class="dashboard ">Typography</span>
+          </div>
+          <p class="work-para">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+            consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+      </div>
+      <hr class="hrline">
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container text-center" id="contact">
+      <i class="fa-brands fa-facebook-square icons"></i>
+      <i class="fa-brands fa-instagram icons"></i>
+      <i class="fa-brands fa-twitter icons"></i>
+      <i class="fa-brands fa-linkedin icons"></i>
+      <p class="copyright-para">Copyright ©2020 All rights reserved </p>
+    </div>
+  </footer>
+</body>
+
+</html>
